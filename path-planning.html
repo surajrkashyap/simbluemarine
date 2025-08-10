@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Path Planning | SimBlue Marine</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+  <style>
+    body { margin: 0; font-family: 'Roboto', sans-serif; color: #001f3f; background: #f8fafc; }
+    header { background: #001f3f; color: #fff; padding: 20px 10%; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 24px; font-weight: bold; letter-spacing: 1px; }
+    nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+    nav a { color: #fff; text-decoration: none; font-size: 17px; transition: color 0.2s; }
+    nav a:hover { color: #00b8d9; }
+    nav a.active { text-decoration: underline; }
+    .hero { position: relative; height: 60vh; width: 100%; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: contain; }
+    .hero-text { position: absolute; top: 50%; left: 10%; transform: translateY(-50%); color: black; max-width: 600px; }
+    .hero-text h1 { font-size: 38px; }
+    .section { padding: 60px 10%; }
+    .overview-description p, .overview-description ul { font-size: 16px; line-height: 1.5; color: #000; }
+    .accordion { background-color: #f2f2f2; border: none; padding: 14px; width: 100%; text-align: left; font-size: 17px; cursor: pointer; outline: none; margin-bottom: 5px; }
+    .accordion-content { display: none; padding: 0 15px 15px 15px; background-color: #fafafa; border-left: 4px solid #0b1f3a; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+    .gallery img, .gallery video { width: 100%; border-radius: 8px; }
+    footer { text-align: center; padding: 24px 0; font-size: 16px; background: #f0f0f0; color: #555; margin-top: 40px; }
+    .copyright { text-align: center; font-size: 15px; color: #888; margin-bottom: 18px; }
+  </style>
+</head>
+<body>
+  <header class="main-header" style="background: linear-gradient(90deg, #02294a 60%, #00b8d9 100%); color: #fff; padding: 32px 10% 24px 10%; display: flex; justify-content: space-between; align-items: center;">
+    <a href="index.html" style="text-decoration: none; color: inherit;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <span class="logo-svg" style="display:inline-block; vertical-align:middle;">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="22" fill="#00b8d9"/>
+            <text x="50%" y="56%" text-anchor="middle" fill="#fff" font-size="18" font-family="Roboto, Arial, sans-serif" font-weight="bold">SBM</text>
+          </svg>
+        </span>
+        <span class="logo" style="font-size: 28px; font-weight: bold; letter-spacing: 1px;">SimBlue Marine</span>
+      </div>
+    </a>
+    <nav>
+      <ul style="list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; align-items: center;">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="underwater-noise.html">Noise Consulting</a></li>
+        <li><a href="digital-twin.html">Digital Twin</a></li>
+        <li><a href="propeller-optimization.html">Propeller Optimization</a></li>
+        <li><a href="voyage-planning.html">Voyage Planning</a></li>
+        <li><a href="training-licensing.html">Training</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="page-hero" style="background: linear-gradient(90deg, #02294a 60%, #00b8d9 100%); color: #fff; padding: 80px 10% 60px 10%; text-align: left;">
+    <h1 style="font-size: 48px; margin-bottom: 18px; font-weight: bold;">Path Planning</h1>
+    <p style="font-size: 22px; max-width: 600px;">AI-enhanced vessel routing to protect marine life and reduce operational cost.</p>
+  </section>
+
+  <section class="section">
+    <h2>Overview</h2>
+    <div class="overview-description">
+      <p>SimBlue Marine's advanced path planning solutions combine artificial intelligence, real-time environmental data, and vessel performance characteristics to optimize maritime routes. Our intelligent routing system considers multiple factors including weather conditions, marine life habitats, fuel efficiency, and operational constraints to deliver optimal navigation paths. By integrating machine learning algorithms with comprehensive environmental databases, we help vessel operators reduce operational costs while minimizing their environmental impact and protecting sensitive marine ecosystems.</p>
+
+      <h3>Core Capabilities</h3>
+      <button class="accordion" onclick="toggleAccordion('cap1')">AI-Powered Route Optimization</button>
+      <div id="cap1" class="accordion-content">
+        Advanced machine learning algorithms for dynamic route optimization based on multiple parameters.
+      </div>
+      <button class="accordion" onclick="toggleAccordion('cap2')">Environmental Impact Assessment</button>
+      <div id="cap2" class="accordion-content">
+        Comprehensive analysis of route impact on marine ecosystems and sensitive habitats.
+      </div>
+      <button class="accordion" onclick="toggleAccordion('cap3')">Real-time Weather Integration</button>
+      <div id="cap3" class="accordion-content">
+        Dynamic route adjustments based on real-time weather and sea condition data.
+      </div>
+      <button class="accordion" onclick="toggleAccordion('cap4')">Fuel Efficiency Optimization</button>
+      <div id="cap4" class="accordion-content">
+        Route planning focused on minimizing fuel consumption while maintaining schedule integrity.
+      </div>
+      <button class="accordion" onclick="toggleAccordion('cap5')">Marine Life Protection</button>
+      <div id="cap5" class="accordion-content">
+        Integration of marine mammal migration patterns and sensitive habitat data into route planning.
+      </div>
+      <button class="accordion" onclick="toggleAccordion('cap6')">Fleet-wide Coordination</button>
+      <div id="cap6" class="accordion-content">
+        Coordinated route planning for multiple vessels to optimize overall fleet operations.
+      </div>
+
+      <h3>Our Path Planning Services Include</h3>
+      <ul>
+        <li>Custom route optimization solutions</li>
+        <li>Environmental impact assessment and mitigation</li>
+        <li>Real-time route monitoring and adjustment</li>
+        <li>Fleet-wide optimization strategies</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Featured Galleries</h2>
+    <div class="gallery">
+      <a href="assets/path_1.jpg" target="_blank">
+        <img src="assets/path_1.jpg" alt="Route Optimization" />
+      </a>
+      <a href="assets/path_2.jpg" target="_blank">
+        <img src="assets/path_2.jpg" alt="Environmental Impact" />
+      </a>
+      <a href="assets/path_3.jpg" target="_blank">
+        <img src="assets/path_3.jpg" alt="Weather Integration" />
+      </a>
+      <a href="assets/path_4.jpg" target="_blank">
+        <img src="assets/path_4.jpg" alt="Fleet Coordination" />
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Success Stories</h2>
+    <ul>
+      <li><strong>Commercial Fleet Route Optimization, 2024</strong> — "Implementation of AI-driven path planning resulting in 15% fuel savings and 40% reduction in marine mammal interactions"</li>
+    </ul>
+  </section>
+
+  <div style="background: #f8fafc; padding: 30px; border-radius: 12px; margin-top: 30px;">
+    <h3 style="color: #001f3f; margin-bottom: 20px; text-align: center;">Research Profile</h3>
+    <p style="text-align: center; margin-bottom: 20px;">
+      <a href="https://scholar.google.com/citations?user=iofAU68AAAAJ&hl=en" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #00b8d9; color: #fff; padding: 12px 20px; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 16px; transition: background 0.2s;">
+        View Google Scholar Profile
+      </a>
+    </p>
+    <div style="background: #f8fafc; padding: 30px; border-radius: 12px; margin-top: 30px;">
+      <h3 style="color: #001f3f; margin-bottom: 20px; text-align: center;">Top Publications on AI-Driven Path Planning & Marine Optimization</h3>
+      <div style="display: grid; gap: 16px;">
+        <div style="background: #fff; padding: 20px; border-radius: 8px; border-left: 4px solid #00b8d9; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+          <div style="font-weight: 600; color: #001f3f; margin-bottom: 8px;">
+            "A multi-objective optimization framework for reducing the impact of ship noise on marine mammals"
+          </div>
+          <div style="color: #666; font-size: 14px;">
+            Venkateshwaran, Jaiman, Ocean Engineering, 2024
+          </div>
+        </div>
+        <div style="background: #fff; padding: 20px; border-radius: 8px; border-left: 4px solid #00b8d9; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+          <div style="font-weight: 600; color: #001f3f; margin-bottom: 8px;">
+            "Physics-informed neural networks for ship resistance prediction"
+          </div>
+          <div style="color: #666; font-size: 14px;">
+            Z Cheng, RK Jaiman, Physics of Fluids, 2023
+          </div>
+        </div>
+        <div style="background: #fff; padding: 20px; border-radius: 8px; border-left: 4px solid #00b8d9; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+          <div style="font-weight: 600; color: #001f3f; margin-bottom: 8px;">
+            "Data-driven optimal path planning for marine vessels under environmental constraints"
+          </div>
+          <div style="color: #666; font-size: 14px;">
+            Z Cheng, RK Jaiman, Applied Ocean Research, 2022
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="main-footer" style="background: #02294a; color: #fff; padding: 48px 10% 32px 10%; margin-top: 60px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 40px;">
+      <div style="flex: 1 1 220px; min-width: 220px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+          <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="22" fill="#00b8d9"/><text x="50%" y="56%" text-anchor="middle" fill="#fff" font-size="15" font-family="Roboto, Arial, sans-serif" font-weight="bold">SBM</text></svg>
+          <span style="font-size: 20px; font-weight: bold;">SimBlue Marine</span>
+        </div>
+      </div>
+      <div style="flex: 2 1 320px; min-width: 220px;">
+        <div style="font-weight: bold; margin-bottom: 8px;">OFFICE ADDRESS</div>
+        <div>Office 171, ICICS Building, 2366 Main Mall Room 289<br>Vancouver, BC V6T 1Z4, Canada</div>
+        <div style="font-weight: bold; margin: 18px 0 6px 0;">CONTACT</div>
+        <div>+1 (236) 866-3374<br>rjaiman@mech.ubc.ca</div>
+      </div>
+      <div style="flex: 1 1 180px; min-width: 180px; display: flex; align-items: center; justify-content: center;">
+        <a href="contact.html" style="display: inline-block; background: #00b8d9; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 16px; transition: background 0.2s;">Contact Us</a>
+      </div>
+    </div>
+    <div style="text-align:center; color:#b0c4d4; font-size:15px; margin-top: 32px;">Copyright &copy; SimBlue Marine 2025</div>
+  </footer>
+</body>
+</html>

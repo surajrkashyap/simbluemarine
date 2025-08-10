@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Voyage Planning | SimBlue Marine</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+  <style>
+
+    header { background: #001f3f; color: #fff; padding: 20px 10%; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 24px; font-weight: bold; letter-spacing: 1px; }
+    nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+    nav a { color: #fff; text-decoration: none; font-size: 17px; transition: color 0.2s; }
+    nav a:hover { color: #00b8d9; }
+    nav a.active { text-decoration: underline; }
+    .hero { position: relative; height: 60vh; width: 100%; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: contain; }
+    .hero-text { position: absolute; top: 50%; left: 10%; transform: translateY(-50%); color: black; max-width: 600px; }
+    .hero-text h1 { font-size: 38px; }
+    .section { padding: 40px 10%; }
+    .overview-description p, .overview-description ul { font-size: 16px; line-height: 1.5; color: #000; }
+    .accordion {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid rgba(0,184,217,0.15);
+      border-radius: 12px;
+      padding: 20px 24px;
+      width: 100%;
+      text-align: left;
+      font-size: 17px;
+      font-weight: 500;
+      color: #001f3f;
+      cursor: pointer;
+      outline: none;
+      margin-bottom: 12px;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .accordion::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #00b8d9 0%, #001f3f 100%);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .accordion:hover::before {
+      transform: scaleY(1);
+    }
+    
+    .accordion:hover {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+      transform: translateX(8px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      border-color: rgba(0,184,217,0.3);
+    }
+    
+    .accordion:active {
+      transform: translateX(8px) scale(0.98);
+    }
+    
+    .accordion-content { 
+      display: none; 
+      padding: 20px 24px; 
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      border-left: 4px solid #00b8d9;
+      border-radius: 0 0 12px 12px;
+      margin-top: -12px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      font-size: 15px;
+      line-height: 1.6;
+      color: #555;
+      position: relative;
+    }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+    .gallery img, .gallery video { width: 100%; border-radius: 8px; }
+    footer { text-align: center; padding: 24px 0; font-size: 16px; background: #f0f0f0; color: #555; margin-top: 40px; }
+    .copyright { text-align: center; font-size: 15px; color: #888; margin-bottom: 18px; }
+    
+    /* Page animations */
+    .hero-title {
+      animation: fadeInDown 1s ease forwards;
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    
+    .hero-description {
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
+      animation-delay: 0.3s;
+    }
+    
+    .animated-title {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-delay: 0.2s;
+    }
+    
+    .overview-description {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-delay: 0.4s;
+    }
+    
+    .animated-accordion {
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .gallery {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-delay: 0.6s;
+    }
+    
+    @keyframes fadeInDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header" style="background: linear-gradient(90deg, #02294a 60%, #00b8d9 100%); color: #fff; padding: 32px 10% 24px 10%; display: flex; justify-content: space-between; align-items: center;">
+    <a href="index.html" style="text-decoration: none; color: inherit;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <span class="logo-svg" style="display:inline-block; vertical-align:middle;">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="22" fill="#00b8d9"/>
+            <text x="50%" y="56%" text-anchor="middle" fill="#fff" font-size="18" font-family="Roboto, Arial, sans-serif" font-weight="bold">SBM</text>
+          </svg>
+        </span>
+        <span class="logo" style="font-size: 28px; font-weight: bold; letter-spacing: 1px;">SimBlue Marine</span>
+      </div>
+    </a>
+    <nav>
+      <ul style="list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; align-items: center;">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="underwater-noise.html">Noise Consulting</a></li>
+        <li><a href="digital-twin.html">Digital Twin</a></li>
+        <li><a href="propeller-optimization.html">Propeller Optimization</a></li>
+        <li><a href="voyage-planning.html" class="active">Voyage Planning</a></li>
+        <li><a href="training-licensing.html">Training</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+ <section class="page-hero" style="background: linear-gradient(90deg, #02294a 60%, #00b8d9 100%); color: #fff; padding: 80px 10% 60px 10%; text-align: left;">
+    <h1 class="hero-title" style="font-size: 48px; margin-bottom: 18px; font-weight: bold;">Voyage Planning</h1>
+    <p class="hero-description" style="font-size: 22px; max-width: 600px;">Advanced weather routing and intelligent voyage planning to ensure optimal ETA management and operational efficiency.</p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title animated-title">Overview</h2>
+    <div class="overview-description">
+      <p>SimBlue Marine's advanced voyage planning platform focuses on acoustic impact assessment and underwater noise optimization for marine operations. Our comprehensive system integrates real-time acoustic modeling, vessel performance analytics, and environmental impact assessment to minimize underwater noise pollution while maintaining operational efficiency. The platform provides detailed acoustic footprint analysis, noise exposure level comparisons, and optimization strategies that enable maritime operators to make environmentally conscious routing decisions while ensuring safe and efficient vessel operations.</p>
+
+      <h3 style="margin-top: 60px; margin-bottom: 30px;">Core Capabilities</h3>
+
+      <button class="accordion animated-accordion" onclick="toggleAccordion('cap1')" style="animation-delay: 0.5s;">Acoustic Impact Assessment</button>
+      <div id="cap1" class="accordion-content">
+        Real-time acoustic modeling and underwater noise analysis for marine operations, providing detailed assessment of vessel acoustic footprints and environmental impact.
+      </div>
+      <button class="accordion animated-accordion" onclick="toggleAccordion('cap2')" style="animation-delay: 0.6s;">Noise Exposure Optimization</button>
+      <div id="cap2" class="accordion-content">
+        Advanced algorithms that optimize vessel routes to minimize underwater noise pollution while maintaining operational efficiency and safety standards.
+      </div>
+      <button class="accordion animated-accordion" onclick="toggleAccordion('cap3')" style="animation-delay: 0.7s;">Environmental Impact Analysis</button>
+      <div id="cap3" class="accordion-content">
+        Comprehensive environmental assessment tools providing detailed analysis of acoustic impact on marine ecosystems and wildlife.
+      </div>
+      <button class="accordion animated-accordion" onclick="toggleAccordion('cap4')" style="animation-delay: 0.8s;">Performance Comparison Tools</button>
+      <div id="cap4" class="accordion-content">
+        Comparative analysis between conventional AIS-based operations and optimized acoustic-aware routing strategies.
+      </div>
+      <button class="accordion animated-accordion" onclick="toggleAccordion('cap5')" style="animation-delay: 0.9s;">Real-Time Monitoring & Visualization</button>
+      <div id="cap5" class="accordion-content">
+        Dynamic visualization platform for real-time acoustic footprint analysis and sound propagation pattern monitoring in marine environments.
+      </div>
+
+      <h3 style="margin-top: 60px; margin-bottom: 30px;">Our Acoustic-Aware Voyage Planning Services Include</h3>
+      <ul>
+        <li>Comprehensive acoustic impact assessment and modeling</li>
+        <li>Real-time underwater noise monitoring and analysis</li>
+        <li>Environmental impact optimization for marine operations</li>
+        <li>Performance comparison between conventional and optimized routes</li>
+        <li>Post-voyage acoustic impact analysis and reporting</li>
+      </ul>
+    </div>
+  </section>
+
+<section class="section">
+      <h2 class="section-title animated-title">Featured Galleries</h2>
+  <div class="gallery">
+    <div class="gallery-item">
+      <a href="assets/voyage_planning/flowchart.png" target="_blank">
+        <img src="assets/voyage_planning/flowchart.png" alt="Voyage Planning Software Architecture" />
+      </a>
+      <div class="gallery-caption">
+        <h4>Voyage Planning Software Architecture</h4>
+        <p>Comprehensive flowchart illustrating the voyage planning software framework with integrated user interface components, performance modeling modules, optimization algorithms, and post-voyage analysis tools for complete voyage management.</p>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <a href="assets/voyage_planning/title.png" target="_blank">
+        <img src="assets/voyage_planning/title.png" alt="Maritime Operation Simulation" />
+      </a>
+      <div class="gallery-caption">
+        <h4>Maritime Operation Simulation Platform</h4>
+        <p>Advanced maritime operation simulation and visualization interface showcasing real-time vessel tracking, route optimization displays, and environmental parameter integration for enhanced operational decision-making.</p>
+      </div>
+    </div>
+    <div class="gallery-item">
+  <a href="assets/voyage_planning/timeseries.jpg" target="_blank">
+    <img src="assets/voyage_planning/timeseries.jpg" alt="Noise Exposure Comparison Analysis" />
+  </a>
+  <div class="gallery-caption">
+    <h4>Maritime Noise Exposure Level Comparison</h4>
+    <p>Comparative analysis of noise exposure levels between AIS-based conventional maritime operations and optimized voyage planning scenarios, demonstrating quantitative acoustic impact reduction through intelligent route optimization strategies.</p>
+  </div>
+</div>
+    <div class="gallery-item">
+      <a href="assets/voyage_planning/Screenshot 2024-11-07 233040.png" target="_blank">
+        <img src="assets/voyage_planning/Screenshot 2024-11-07 233040.png" alt="Acoustic Footprint Visualization" />
+      </a>
+      <div class="gallery-caption">
+        <h4>Real-Time Acoustic Footprint Analysis</h4>
+        <p>Dynamic visualization of ship acoustic footprint and sound propagation patterns in the marine environment, enabling real-time monitoring of underwater noise impact and environmental assessment capabilities.</p>
+      </div>
+    </div>
+    <div class="gallery-item">
+      <a href="assets/voyage_planning/ship_recording_highQ.mp4" target="_blank">
+        <video src="assets/voyage_planning/ship_recording_highQ.mp4" controls muted>
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <div class="gallery-caption">
+        <h4>Software Demonstration Video</h4>
+        <p>Interactive video demonstration showcasing live case studies and software functionality, including voyage optimization workflows, route planning interfaces, and performance analysis tools in operational scenarios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Research Profile</h2>
+  <p style="text-align: center; margin-bottom: 20px;">
+    <a href="https://scholar.google.com/citations?user=iofAU68AAAAJ&hl=en" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #00b8d9; color: #fff; padding: 12px 20px; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 16px; transition: background 0.2s;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+      </svg>
+      View Google Scholar Profile
+    </a>
+  </p>
+  
+  <div style="background: #f8fafc; padding: 30px; border-radius: 12px; margin-top: 30px;">
+    <h3 style="color: #001f3f; margin-bottom: 20px; text-align: center;">Latest Publications on Voyage Planning & Marine Operations</h3>
+    <div style="display: grid; gap: 16px;">
+      <div style="background: #fff; padding: 20px; border-radius: 8px; border-left: 4px solid #00b8d9; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <div style="font-weight: 600; color: #001f3f; margin-bottom: 8px;">
+          "Predicting transmission loss in underwater acoustics using continual learning with range-dependent conditional convolutional neural networks"
+        </div>
+        <div style="color: #666; font-size: 14px; margin-bottom: 12px;">
+          I. Kant Deo, A. Venkateshwaran, R. K. Jaiman, Journal of the Acoustical Society of America, 2025
+        </div>
+        <a href="https://doi.org/10.1121/10.0036773" target="_blank" style="color: #00b8d9; text-decoration: none; font-size: 14px; font-weight: 500;">View Paper →</a>
+      </div>
+      <div style="background: #fff; padding: 20px; border-radius: 8px; border-left: 4px solid #00b8d9; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <div style="font-weight: 600; color: #001f3f; margin-bottom: 8px;">
+          "A multi-objective optimization framework for reducing the impact of ship noise on marine mammals"
+        </div>
+        <div style="color: #666; font-size: 14px; margin-bottom: 12px;">
+          A. Venkateshwaran, I. Kant Deo, J. Jelovica, R. K. Jaiman, Ocean Engineering, 2024
+        </div>
+        <a href="https://www.sciencedirect.com/science/article/pii/S0029801824020250" target="_blank" style="color: #00b8d9; text-decoration: none; font-size: 14px; font-weight: 500;">View Paper →</a>
+      </div>
+      <div style="background: #fff; padding: 20px; border-radius: 8px; border-left: 4px solid #00b8d9; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+        <div style="font-weight: 600; color: #001f3f; margin-bottom: 8px;">
+          "Predicting Wave Propagation for Varying Bathymetry Using Conditional Convolutional Autoencoder Network"
+        </div>
+        <div style="color: #666; font-size: 14px; margin-bottom: 12px;">
+          I. Kant Deo, A. Venkateshwaran, R. Jaiman, ASME OMAE Conference, 2024
+        </div>
+        <a href="https://doi.org/10.1115/OMAE2024-128032" target="_blank" style="color: #00b8d9; text-decoration: none; font-size: 14px; font-weight: 500;">View Paper →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="main-footer" style="background: #02294a; color: #fff; padding: 48px 10% 32px 10%; margin-top: 60px;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 40px;">
+    <div style="flex: 1 1 220px; min-width: 220px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+        <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="22" fill="#00b8d9"/><text x="50%" y="56%" text-anchor="middle" fill="#fff" font-size="15" font-family="Roboto, Arial, sans-serif" font-weight="bold">SBM</text></svg>
+        <span style="font-size: 20px; font-weight: bold;">SimBlue Marine</span>
+      </div>
+    </div>
+    <div style="flex: 2 1 320px; min-width: 220px;">
+      <div style="font-weight: bold; margin-bottom: 8px;">OFFICE ADDRESS</div>
+              <div>Office 171, ICICS Building, 2366 Main Mall Room 289<br>Vancouver, BC V6T 1Z4, Canada</div>
+      <div style="font-weight: bold; margin: 18px 0 6px 0;">CONTACT</div>
+      <div>+1 (236) 866-3374<br>rjaiman@mech.ubc.ca</div>
+    </div>
+    <div style="flex: 1 1 180px; min-width: 180px; display: flex; align-items: center; justify-content: center;">
+      <a href="contact.html" style="display: inline-block; background: #00b8d9; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 16px; transition: background 0.2s;">Contact Us</a>
+    </div>
+  </div>
+  <div style="text-align:center; color:#b0c4d4; font-size:15px; margin-top: 32px;">Copyright &copy; SimBlue Marine 2025</div>
+</footer>
+</body>
+</html>

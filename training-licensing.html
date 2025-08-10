@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Training & Licensing | SimBlue Marine</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    function toggleAccordion(id) {
+      const content = document.getElementById(id);
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
+  <style>
+    header { background: #001f3f; color: #fff; padding: 20px 10%; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 24px; font-weight: bold; letter-spacing: 1px; }
+    nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
+    nav a { color: #fff; text-decoration: none; font-size: 17px; transition: color 0.2s; }
+    nav a:hover { color: #00b8d9; }
+    nav a.active { text-decoration: underline; }
+    .hero { position: relative; height: 60vh; width: 100%; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: contain; }
+    .hero-text { position: absolute; top: 50%; left: 10%; transform: translateY(-50%); color: black; max-width: 600px; }
+    .hero-text h1 { font-size: 38px; }
+    .section { padding: 60px 10%; }
+    .overview-description p, .overview-description ul { font-size: 16px; line-height: 1.5; color: #000; }
+    .accordion { background-color: #f2f2f2; border: none; padding: 14px; width: 100%; text-align: left; font-size: 17px; cursor: pointer; outline: none; margin-bottom: 5px; }
+    .accordion-content { 
+      display: none; 
+      padding: 20px 24px; 
+      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+      border-left: 4px solid #00b8d9;
+      border-radius: 0 0 12px 12px;
+      margin-top: -12px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      font-size: 15px;
+      line-height: 1.6;
+      color: #555;
+      position: relative;
+    }
+    .media-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-top: 40px; }
+    .media-card { 
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); 
+      border-radius: 16px; 
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12); 
+      padding: 35px; 
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(0,184,217,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .media-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #00b8d9 0%, #001f3f 100%);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .media-card:hover::before {
+      transform: scaleX(1);
+    }
+    .media-card:hover { 
+      transform: translateY(-8px) scale(1.02); 
+      box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+      border-color: rgba(0,184,217,0.2);
+    }
+    .media-card h3 { 
+      color: #001f3f; 
+      margin-bottom: 18px; 
+      font-size: 22px; 
+      font-weight: 600;
+      position: relative;
+    }
+    .media-card p { 
+      color: #555; 
+      margin-bottom: 25px; 
+      line-height: 1.7; 
+      font-size: 15px;
+    }
+    .media-link { 
+      display: inline-block; 
+      background: linear-gradient(135deg, #001f3f 0%, #02294a 100%); 
+      color: #fff; 
+      padding: 14px 28px; 
+      border-radius: 8px; 
+      text-decoration: none; 
+      font-weight: 500; 
+      font-size: 15px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,31,63,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .media-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    .media-link:hover::before {
+      left: 100%;
+    }
+    .media-link:hover { 
+      background: linear-gradient(135deg, #00b8d9 0%, #1976d2 100%); 
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,184,217,0.3);
+    }
+    footer { text-align: center; padding: 24px 0; font-size: 16px; background: #f0f0f0; color: #555; margin-top: 40px; }
+    .copyright { text-align: center; font-size: 15px; color: #888; margin-bottom: 18px; }
+    
+    /* Page animations */
+    .hero-title {
+      animation: fadeInDown 1s ease forwards;
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    
+    .hero-description {
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
+      animation-delay: 0.3s;
+    }
+    
+    .animated-title {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-delay: 0.2s;
+    }
+    
+    .overview-description {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-delay: 0.4s;
+    }
+    
+    .accordion {
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid rgba(0,184,217,0.15);
+      border-radius: 12px;
+      padding: 20px 24px;
+      width: 100%;
+      text-align: left;
+      font-size: 17px;
+      font-weight: 500;
+      color: #001f3f;
+      cursor: pointer;
+      outline: none;
+      margin-bottom: 12px;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .accordion::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #00b8d9 0%, #001f3f 100%);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .accordion:hover::before {
+      transform: scaleY(1);
+    }
+    
+    .accordion:hover {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+      transform: translateX(8px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      border-color: rgba(0,184,217,0.3);
+    }
+    
+    .accordion:active {
+      transform: translateX(8px) scale(0.98);
+    }
+    
+    .animated-accordion {
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .media-section {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-delay: 0.6s;
+    }
+    
+    @keyframes fadeInDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header" style="background: linear-gradient(90deg, #02294a 60%, #00b8d9 100%); color: #fff; padding: 32px 10% 24px 10%; display: flex; justify-content: space-between; align-items: center;">
+    <a href="index.html" style="text-decoration: none; color: inherit;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <span class="logo-svg" style="display:inline-block; vertical-align:middle;">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="22" fill="#00b8d9"/>
+            <text x="50%" y="56%" text-anchor="middle" fill="#fff" font-size="18" font-family="Roboto, Arial, sans-serif" font-weight="bold">SBM</text>
+          </svg>
+        </span>
+        <span class="logo" style="font-size: 28px; font-weight: bold; letter-spacing: 1px;">SimBlue Marine</span>
+      </div>
+    </a>
+    <nav>
+      <ul style="list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; align-items: center;">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="underwater-noise.html">Noise Consulting</a></li>
+        <li><a href="digital-twin.html">Digital Twin</a></li>
+        <li><a href="propeller-optimization.html">Propeller Optimization</a></li>
+        <li><a href="voyage-planning.html">Voyage Planning</a></li>
+        <li><a href="training-licensing.html" class="active">Training</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section class="page-hero" style="background: linear-gradient(90deg, #02294a 60%, #00b8d9 100%); color: #fff; padding: 80px 10% 60px 10%; text-align: left;">
+    <h1 class="hero-title" style="font-size: 48px; margin-bottom: 18px; font-weight: bold;">Training & Workshops</h1>
+    <p class="hero-description" style="font-size: 22px; max-width: 600px;">Specialized short courses and workshops in marine engineering, computational fluid dynamics, and digital twin technologies.</p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title animated-title">Overview</h2>
+    <div class="overview-description">
+              <p>SimBlue Marine offers specialized workshops and short courses designed to train engineers and professionals in the latest marine engineering technologies. Our training programs focus on practical applications of computational fluid dynamics (CFD), digital twin technologies, underwater noise analysis, propeller optimization, and intelligent voyage planning. From hands-on software training to advanced theoretical concepts, our expert-led workshops provide comprehensive knowledge transfer for engineering teams.</p>
+
+      <h3 style="margin-top: 60px; margin-bottom: 30px;">Core Training Areas</h3>
+      <button class="accordion animated-accordion" onclick="toggleAccordion('cap1')" style="animation-delay: 0.5s;">Underwater Noise Analysis & Modeling</button>
+              <div id="cap1" class="accordion-content">
+          Comprehensive training on acoustic modeling, cavitation analysis, and noise prediction for marine propellers and underwater structures. Learn to use advanced CFD tools for acoustic simulations and underwater noise analysis.
+        </div>
+      <button class="accordion animated-accordion" onclick="toggleAccordion('cap2')" style="animation-delay: 0.6s;">Digital Twin Development & Implementation</button>
+      <div id="cap2" class="accordion-content">
+        Hands-on workshops on creating and deploying digital twins for marine systems. Cover real-time monitoring, predictive maintenance, and system optimization using AI and machine learning techniques.
+      </div>
+      <button class="accordion animated-accordion" onclick="toggleAccordion('cap3')" style="animation-delay: 0.7s;">Propeller Optimization & Design</button>
+      <div id="cap3" class="accordion-content">
+        Advanced training in propeller design optimization, performance analysis, and efficiency improvements. Learn to use computational tools for hydrodynamic optimization and fuel efficiency enhancement.
+      </div>
+      <button class="accordion animated-accordion" onclick="toggleAccordion('cap4')" style="animation-delay: 0.8s;">Intelligent Voyage Planning</button>
+      <div id="cap4" class="accordion-content">
+        Training on AI-powered route optimization, weather routing, and fuel-efficient navigation systems. Master the use of advanced algorithms for optimal voyage planning and operational efficiency.
+      </div>
+      <button class="accordion animated-accordion" onclick="toggleAccordion('cap5')" style="animation-delay: 0.9s;">Software Tools & Platforms</button>
+              <div id="cap5" class="accordion-content">
+          Comprehensive training on our proprietary simulation platforms, including CFD solvers, machine learning frameworks, and data analysis tools. Learn to effectively utilize our software suite for marine engineering applications and optimization.
+        </div>
+      <button class="accordion animated-accordion" onclick="toggleAccordion('cap6')" style="animation-delay: 1.0s;">Corporate Engineering Support</button>
+              <div id="cap6" class="accordion-content">
+          Tailored training programs for engineering teams, including on-site workshops, specialized courses, and ongoing technical support for implementation and maintenance of our solutions.
+        </div>
+
+      <h3 style="margin-top: 60px; margin-bottom: 30px;">Our Training Programs Include</h3>
+      <ul>
+        <li>Specialized short courses in marine engineering technologies</li>
+        <li>Hands-on workshops with real-world case studies</li>
+        <li>Software training for our proprietary platforms</li>
+        <li>Engineering team training and specialized courses</li>
+        <li>Ongoing technical support and consultation</li>
+        <li>Custom training programs for specific industry needs</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title animated-title">Media & Publications</h2>
+    <div class="media-section">
+      <div class="media-card">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="12" width="44" height="36" rx="6" fill="url(#courseGradient)" stroke="#00b8d9" stroke-width="2"/>
+            <path d="M16 20L26 30L44 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="30" cy="8" r="4" fill="#00b8d9"/>
+            <path d="M25 4L35 4" stroke="#00b8d9" stroke-width="2" stroke-linecap="round"/>
+            <path d="M28 1L32 1" stroke="#00b8d9" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 28L48 28" stroke="white" stroke-width="1" stroke-dasharray="2 2"/>
+            <path d="M12 34L48 34" stroke="white" stroke-width="1" stroke-dasharray="2 2"/>
+            <defs>
+              <linearGradient id="courseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#001f3f;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#00b8d9;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h3>ASME OMAE 2021 Short Course</h3>
+        <p>Physics-Based Data-Driven Modeling and Machine Learning: Application to Marine/Offshore Engineering. This comprehensive short course covers the integration of high-performance computing with data science and machine learning for marine engineering applications.</p>
+        <a href="https://event.asme.org/OMAE-2021/Program/Short-Courses" target="_blank" class="media-link">View Course Details</a>
+      </div>
+      <div class="media-card">
+        <div style="text-align: center; margin-bottom: 20px;">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="12" width="44" height="36" rx="6" fill="url(#courseGradient)" stroke="#00b8d9" stroke-width="2"/>
+            <path d="M16 20L26 30L44 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="30" cy="8" r="4" fill="#00b8d9"/>
+            <path d="M25 4L35 4" stroke="#00b8d9" stroke-width="2" stroke-linecap="round"/>
+            <path d="M28 1L32 1" stroke="#00b8d9" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 28L48 28" stroke="white" stroke-width="1" stroke-dasharray="2 2"/>
+            <path d="M12 34L48 34" stroke="white" stroke-width="1" stroke-dasharray="2 2"/>
+            <defs>
+              <linearGradient id="courseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#001f3f;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#00b8d9;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h3>WCCM 2024 Scientific Machine Learning Course</h3>
+        <p>Scientific Machine Learning: Application to Computational Mechanics. Advanced course covering reduced-order modeling, deep learning technologies, and their integration with computational fluid dynamics and fluid-structure interaction solvers.</p>
+        <a href="https://www.wccm2024.org/W24-05" target="_blank" class="media-link">View Course Details</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="main-footer" style="background: #02294a; color: #fff; padding: 48px 10% 32px 10%; margin-top: 60px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 40px;">
+      <div style="flex: 1 1 220px; min-width: 220px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+          <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="22" fill="#00b8d9"/><text x="50%" y="56%" text-anchor="middle" fill="#fff" font-size="15" font-family="Roboto, Arial, sans-serif" font-weight="bold">SBM</text></svg>
+          <span style="font-size: 20px; font-weight: bold;">SimBlue Marine</span>
+        </div>
+      </div>
+      <div style="flex: 2 1 320px; min-width: 220px;">
+        <div style="font-weight: bold; margin-bottom: 8px;">OFFICE ADDRESS</div>
+        <div>Office 171, ICICS Building, 2366 Main Mall Room 289<br>Vancouver, BC V6T 1Z4, Canada</div>
+        <div style="font-weight: bold; margin: 18px 0 6px 0;">CONTACT</div>
+        <div>+1 (236) 866-3374<br>rjaiman@mech.ubc.ca</div>
+      </div>
+      <div style="flex: 1 1 180px; min-width: 180px; display: flex; align-items: center; justify-content: center;">
+        <a href="contact.html" style="display: inline-block; background: #00b8d9; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 16px; transition: background 0.2s;">Contact Us</a>
+      </div>
+    </div>
+    <div style="text-align:center; color:#b0c4d4; font-size:15px; margin-top: 32px;">Copyright &copy; SimBlue Marine 2025</div>
+  </footer>
+</body>
+</html>

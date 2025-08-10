@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | SimBlue Marine</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    nav a { color: #fff; text-decoration: none; font-size: 17px; transition: color 0.2s; }
+    nav a:hover { color: #00b8d9; }
+    
+    .contact-section {
+      padding: 80px 10%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+                                                                               .contact-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 60px;
+          margin-top: 40px;
+          align-items: stretch;
+        }
+    
+         .contact-form {
+       background: #fff;
+       border-radius: 16px;
+       box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+       padding: 40px;
+       height: 100%;
+       display: flex;
+       flex-direction: column;
+     }
+    
+    .form-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #001f3f;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #001f3f;
+      font-size: 14px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e3e8f0;
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Roboto', sans-serif;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #00b8d9;
+      box-shadow: 0 0 0 3px rgba(0,184,217,0.1);
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+         .submit-btn {
+       background: linear-gradient(135deg, #001f3f 0%, #02294a 100%);
+       color: #fff;
+       border: none;
+       padding: 14px 32px;
+       border-radius: 8px;
+       font-size: 16px;
+       font-weight: 500;
+       cursor: pointer;
+       transition: all 0.3s ease;
+       width: 100%;
+       margin-top: auto;
+     }
+    
+    .submit-btn:hover {
+      background: linear-gradient(135deg, #00b8d9 0%, #1976d2 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,184,217,0.3);
+    }
+    
+                                                                                       .map-section {
+          height: 100%;
+        }
+     
+                               .map-section .info-section {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+      
+                                   .map-section .map-container {
+          flex: 1;
+          min-height: 450px;
+        }
+    
+    .info-section {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      padding: 40px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .info-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: #001f3f;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+    }
+    
+    .info-content {
+      color: #4a5568;
+      line-height: 1.6;
+    }
+    
+    .info-item {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    
+    .info-item strong {
+      color: #001f3f;
+      min-width: 100px;
+    }
+    
+    .map-container {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    
+         .map-container iframe {
+       width: 100%;
+       height: 100%;
+       border: 0;
+     }
+    
+         /* Responsive design */
+     @media (max-width: 768px) {
+       .contact-grid {
+         grid-template-columns: 1fr;
+         gap: 40px;
+       }
+       
+       .contact-info {
+         grid-template-columns: 1fr;
+         gap: 24px;
+       }
+       
+       .contact-section {
+         padding: 60px 5%;
+       }
+       
+       .contact-form,
+       .info-section {
+         padding: 24px;
+       }
+     }
+    
+    /* Page animations */
+    .hero-title {
+      animation: fadeInDown 1s ease forwards;
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    
+    .hero-description {
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
+      animation-delay: 0.3s;
+    }
+    
+    .contact-form {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-delay: 0.4s;
+    }
+    
+         .map-section {
+       animation: fadeInUp 0.8s ease forwards;
+       opacity: 0;
+       transform: translateY(20px);
+       animation-delay: 0.6s;
+     }
+    
+    @keyframes fadeInDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header" style="background: linear-gradient(90deg, #02294a 60%, #00b8d9 100%); color: #fff; padding: 32px 10% 24px 10%; display: flex; justify-content: space-between; align-items: center;">
+    <a href="index.html" style="text-decoration: none; color: inherit;">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <span class="logo-svg" style="display:inline-block; vertical-align:middle;">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="22" fill="#00b8d9"/>
+            <text x="50%" y="56%" text-anchor="middle" fill="#fff" font-size="18" font-family="Roboto, Arial, sans-serif" font-weight="bold">SBM</text>
+          </svg>
+        </span>
+        <span class="logo" style="font-size: 28px; font-weight: bold; letter-spacing: 1px;">SimBlue Marine</span>
+      </div>
+    </a>
+    <nav>
+      <ul style="list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; align-items: center;">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="underwater-noise.html">Noise Consulting</a></li>
+        <li><a href="digital-twin.html">Digital Twin</a></li>
+        <li><a href="propeller-optimization.html">Propeller Optimization</a></li>
+        <li><a href="voyage-planning.html">Voyage Planning</a></li>
+        <li><a href="training-licensing.html">Training</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-hero" style="background: linear-gradient(90deg, #02294a 60%, #00b8d9 100%); color: #fff; padding: 80px 10% 60px 10%; text-align: left;">
+    <h1 class="hero-title" style="font-size: 48px; margin-bottom: 18px; font-weight: bold;">Contact SimBlue Marine</h1>
+    <p class="hero-description" style="font-size: 22px; max-width: 600px;">Get in touch for consulting, partnerships, or support.</p>
+  </section>
+
+  <section class="contact-section">
+    <div class="contact-grid">
+      <!-- Contact Form -->
+      <form class="contact-form">
+        <div class="form-title">Send us a Message</div>
+        
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required placeholder="Enter your full name" />
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required placeholder="Enter your email address" />
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" required placeholder="Tell us about your project or inquiry..."></textarea>
+        </div>
+        
+        <button type="button" onclick="sendMessage()" class="submit-btn">Send Message</button>
+      </form>
+
+                           <!-- Map Section -->
+        <div class="map-section">
+          <div class="info-section">
+            <div class="info-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              Find Us
+            </div>
+            <div class="map-container">
+              <iframe
+                src="https://www.google.com/maps?q=49.26150173153955,-123.248769432263&z=16&output=embed&hl=en"
+                allowfullscreen
+                aria-hidden="false"
+                tabindex="0"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <script>
+    function sendMessage() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      if (!name || !email || !message) {
+        alert('Please fill in all required fields before sending.');
+        return;
+      }
+      
+      const subject = encodeURIComponent('Contact from SimBlue Marine Website');
+      const body = encodeURIComponent(
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Message:\n${message}`
+      );
+      
+      const mailtoLink = `mailto:rachitgupta.dce@gmail.com,suraj.r.kashyap@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
+    }
+  </script>
+
+  <footer class="main-footer" style="background: #02294a; color: #fff; padding: 48px 10% 32px 10%; margin-top: 60px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 40px;">
+      <div style="flex: 1 1 220px; min-width: 220px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 18px;">
+          <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="22" fill="#00b8d9"/><text x="50%" y="56%" text-anchor="middle" fill="#fff" font-size="15" font-family="Roboto, Arial, sans-serif" font-weight="bold">SBM</text></svg>
+          <span style="font-size: 20px; font-weight: bold;">SimBlue Marine</span>
+        </div>
+      </div>
+      <div style="flex: 2 1 320px; min-width: 220px;">
+        <div style="font-weight: bold; margin-bottom: 8px;">OFFICE ADDRESS</div>
+        <div>Office 171, ICICS Building, 2366 Main Mall Room 289<br>Vancouver, BC V6T 1Z4, Canada</div>
+        <div style="font-weight: bold; margin: 18px 0 6px 0;">CONTACT</div>
+        <div>+1 (236) 866-3374<br>rjaiman@mech.ubc.ca</div>
+      </div>
+      <div style="flex: 1 1 180px; min-width: 180px; display: flex; align-items: center; justify-content: center;">
+        <a href="contact.html" style="display: inline-block; background: #00b8d9; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 500; font-size: 16px; transition: background 0.2s;">Contact Us</a>
+      </div>
+    </div>
+    <div style="text-align:center; color:#b0c4d4; font-size:15px; margin-top: 32px;">Copyright &copy; SimBlue Marine 2025</div>
+  </footer>
+</body>
+</html> 
